@@ -1,26 +1,58 @@
 <template>
     <div class="container mt-3">
-        <div id="carouselExampleAutoplaying" class="carousel slide">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="../assets/image/corn.jpg" class="d-block rounded-5 border-3" width="100%" height="400px"
-                        style="background-size: cover;background-clip: content-box   ;" alt="...">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="../assets/image/corn.jpg" class="d-block rounded-5" width="100%" height="400px" alt="...">
+                    <div class="carousel-caption desc">
+                        <h2>First slide label</h2>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="../assets/image/corn.jpg" class="d-block rounded-5" width="100%" height="400px" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Second slide label</h2>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="../assets/image/banner_files/banner-1.png" class="d-block rounded-5 border-3" width="100%"
-                        height="400px" alt="...">
+                    <img src="../assets/image/corn.jpg" class="d-block rounded-5" width="100%" height="400px" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Third slide label</h2>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-                data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
     </div>
 </template>
+
+<style scoped>
+img {
+    background-size: cover;
+    object-fit: cover;
+}
+
+.desc{
+    border: 1px solid #242424;
+    transform: translate(0, -100px);
+    width: 400px;
+}
+</style>

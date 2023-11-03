@@ -63,10 +63,14 @@
 }
 
 .kategoriGambar {
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
     margin-top: 30px;
+    transition: 0.2s;
 }
 
 .kategoriGambar:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     transform: translate(5px, -10px);
-}</style>
+    transition: 0.2s;
+}
+
+</style>
