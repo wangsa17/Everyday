@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --cprimary: #E76202;
+	--cdark: #242424;
+	--clight: #EEEEEE;
+}
+
+body{
+    height: 300vh;
+}
