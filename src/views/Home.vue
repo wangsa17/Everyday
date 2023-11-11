@@ -1,29 +1,19 @@
 <script setup>
-import Navbar from '../components/Navbar.vue'
-import Kategori from '../components/Kategori.vue'
-import KategoriTri from '../components/KategoriTri.vue'
-import Carousel from '../components/Carousel.vue'
-import PopularP from '../components/PopularP.vue'
+import NavbarVue from '../components/Navbar.vue'
+import KategoriVue from '../components/Kategori.vue'
+import KategoriTriVue from '../components/KategoriTri.vue'
+import CarouselVue from '../components/Carousel.vue'
+import PopularPVue from '../components/PopularP.vue'
+import DailyBSVue from '../components/DailyBS.vue'
+import SubscribeVue from '../components/Subscribe.vue'
 
 </script>
 
 <template>
-    <Navbar />
-    <!-- <div class="container">
-        <div class="card" style="width: 18rem;">
-            <img src="../assets/image/bimoli.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div> -->
-    <Carousel />
-    <Kategori />
-    <KategoriTri />
-    <PopularP />
-
-    
+    <CarouselVue />
+    <KategoriVue />
+    <KategoriTriVue />
+    <PopularPVue />
+    <DailyBSVue />
+    <SubscribeVue />
 </template>

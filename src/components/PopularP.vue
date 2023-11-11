@@ -133,6 +133,7 @@
 <style scoped>
 #PopularP {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 span {
@@ -155,8 +156,8 @@ ul{
     margin-top: 10px;
     list-style-type: none;
     /* border: 1px solid #242424; */
-    width: 79%;
-    height: 50px;
+    width: 78%;
+    height: 20px;
     text-align: end;
 }
 
@@ -169,15 +170,14 @@ a{
     color: #242424;
 }
 
-.PP {
-  transition: transform 0.3s ease, color 0.3s ease; /* Animasi untuk transformasi dan perubahan warna */
-  color: #000; /* Warna teks default */
+/* .PP {
+  transition: transform 0.3s ease, color 0.3s ease; 
+  color: #000; 
 }
 
 .PP:hover {
-  transform: translateY(-5px); /* Geser ke atas 5 piksel saat dihover */
-  color: #E76202; /* Warna saat dihover */
-}
-
+  transform: translateY(-5px);
+  color: #E76202; 
+} */
 
 </style>

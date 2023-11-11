@@ -17,24 +17,28 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Beranda</a>
+            <router-link class="nav-link" aria-current="page" to="/">Beranda</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Tentang Kami</a>
+            <router-link class="nav-link" to="/about">Tentang Kami</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Masuk | Daftar</a>
+            <router-link to="/login" class="nav-link">Masuk</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/daftar" class="nav-link">Daftar</router-link>
+          </li>
+          
         </ul>
       </div>
     </div>
   </nav>
   <nav class="navbar bg-white">
     <div class="container navSec">
-      <div id="logo">Everyday</div>
+      <div id="logo"><img src="../assets/image/logo/logo.png" width="80px" alt="" style="margin: -14px 0 0 -20px;">veryday</div>
       <div class="col">
         <div class="input-with-icon">
-          <input type="text" id="inputsearch" placeholder="Cari item...">
+          <input type="text" id="inputsearch" class="form-control" placeholder="Cari item...">
           <i class="fa-solid fa-magnifying-glass" style="color: #e76202;"></i>
         </div>
       </div>
@@ -44,31 +48,36 @@
       </div>
     </div>
   </nav>
+  <router-view></router-view>
 </template>
 
 <style scoped>
-a{
-    color: #242424;
+a {
+  color: #242424;
 }
 
-a:hover{
-    color: #E76202;
+a:hover {
+  color: #E76202;
 }
-.container{
+
+.container {
   border-bottom: 2px solid #eee;
   margin-top: 0;
   /* border: 1px solid #000; */
 }
-.navPri{
+
+.navPri {
   padding-bottom: 10px;
   height: 35px;
 }
-.navSec{
-  height: 70px;
+
+.navSec {
+  height: 100px;
   margin-top: -10px;
   padding-bottom: 8px;
   /* border: 1px solid #000; */
 }
+
 #no {
   float: left;
   width: 780px;
@@ -82,13 +91,18 @@ a:hover{
   font-size: 30px;
   float: left;
   width: 350px;
-  /* border: 1px solid #E76202; */
+  /* border: 1px solid #ddd; */
 
 }
-
-#inputsearch:active {
+#inputsearch{
+  border: 1px solid #ddd;
+  transition: border-color 0.3s;
+  border-radius: 15px;
+  padding: 15px 20px;
+}
+#inputsearch:focus {
   border: 1px solid #E76202;
-
+  box-shadow: none;
 }
 
 .input-with-icon {
@@ -111,4 +125,11 @@ a:hover{
   top: 50%;
   transform: translateY(-50%);
 }
+
+.bLogin{
+  transform: translateY(20px);
+  align-items: center;
+  padding-top: 200px;
+}
+
 </style>
