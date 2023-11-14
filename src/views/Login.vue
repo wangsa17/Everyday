@@ -1,8 +1,9 @@
 <script setup>
-
+import NavbarVue from '../components/Navbar.vue';
 </script>
 
 <template>
+    <NavbarVue />
     <div class="container">
         <div class="login mb-3">
             <div class="row">
@@ -11,23 +12,28 @@
                 </div>
                 <div class="col" style="margin-top: 50px;">
                     <h2>Login</h2>
-                    <p><span class="create-account-label">Don't have an account?</span> <a
+                    <p>
+                        <span class="create-account-label">Don't have an account?</span> <a
                             href="your_registration_page.html">Create
-                            here</a></p>
+                            here</a>
+                    </p>
                     <form action="#" method="post">
                         <input type="text" class="form-control custom-input" id="username" name="username"
-                            placeholder="Username or Email*" required><br><br>
+                            placeholder="Username or Email*" required>
                         <input type="password" class="form-control custom-input" id="password" name="password"
-                            placeholder="Your password*" required><br><br>
-                        <input type="text" class="form-control custom-input" id="code" name="code" placeholder="Code*"
-                            size="10" required>
-                        <span class="code-span">12345</span> <!-- Kode angka di samping input "Code" -->
-                        <br><br>
-                        <input type="checkbox" class="form-control custom-input" id="remember-me" name="remember-me"
-                            value="1" style="margin-right: 5px;">
+                            placeholder="Your password*" required>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control custom-input-code" id="code" name="code"
+                                    placeholder="Code*" size="10" required>
+                            </div>
+                            <div class="col">
+                                <span class="custom-code-span">12345</span>
+                            </div>
+                        </div>
                         <label for="remember-me">Remember me</label>
                         <a href="forgot_password.html" style="margin-left: 30px;">Forgot Password?</a>
-                        <br><br>
+
                         <input type="submit" value="Log in" class="login-button">
                     </form>
                 </div>
@@ -65,9 +71,30 @@ span.create-account-label {
     /* Menambahkan tebal pada label */
 }
 
+.custom-input {
+    padding: 20px 25px;
+    width: 400px;
+    border-radius: 12px;
+    border: 1px solid #dddddd;
+    transition: border-color 0.3s;
+    margin-bottom: 15px;
+}
 
+.custom-input:focus {
+    border: 1px solid #E76202;
+    box-shadow: none;
+}
 
-input[type="text"],
+.custom-input-code {
+    padding: 20px 25px;
+    width: 200px;
+    border-radius: 12px;
+    border: 1px solid #dddddd;
+    transition: border-color 0.3s;
+    margin-bottom: 15px;
+}
+
+/* input[type="text"],
 input[type="password"] {
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -94,14 +121,14 @@ input[type="text"]#code {
     text-align: left;
     width: 30%;
     margin-right: 30%;
-    /* Menggeser elemen ke kanan */
-}
+    /* Menggeser elemen ke kanan 
+} */
 
-.code-span {
+.custom-code-span {
     border: 1px solid #E76202;
     /* Red border color (#FF0000) */
     border-radius: 4px;
-    padding: 5px 20px;
+    padding: 12px 50px;
     margin-right: 10%;
     /* Menambahkan margin antara input dan span */
     background: linear-gradient(45deg, #ff5733, #ffdb58, #33ff57, #337aff, #b833ff);
@@ -128,4 +155,5 @@ a {
     margin-right: 120px;
     text-decoration: none;
     color: #242424;
-}</style>
+}
+</style>

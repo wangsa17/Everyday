@@ -1,4 +1,8 @@
+<script setup>
+import NavbarVue from '../components/Navbar.vue';
+</script>
 <template>
+    <NavbarVue/>
     <div class="container">
         <div class="row">
             <div class="col"></div>
