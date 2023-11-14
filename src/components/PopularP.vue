@@ -15,7 +15,7 @@
                 <div class="col-3">
                     <div class="card shadow mt-4 rounded-4" id="cards">
                         <div class="px-5 py-1">
-                            <img class="card-img-top py-3" src="../assets/image/gula-removebg.png" alt="Title">
+                            <img class="card-img-top py-3" src="../assets/image/produk/gula-removebg.png" alt="Title">
                         </div>
                         <div class="card-body">
                             <div>Kategori</div>

@@ -10,22 +10,25 @@
                     aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="10000">
-                    <img src="../assets/image/banner/corn.jpg" class="d-block rounded-5" width="100%" height="400px" alt="...">
+                <div class="carousel-item active custom-img rounded-5" data-bs-interval="10000">
+                    <img src="../assets/image/banner/bahan-pokok.png" class="my-auto custom-carousel" width="350px"
+                        alt="...">
                     <div class="carousel-caption desc">
-                        <h2>First slide label</h2>
-                        <p>Some representative placeholder content for the first slide.</p>
+                        <h1>Don’t miss amazing grocery deals</h1>
+                        <p>Save 50% off on your first order</p>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
-                    <img src="../assets/image/banner/corn.jpg" class="d-block rounded-5" width="100%" height="400px" alt="...">
+                    <img src="../assets/image/banner/corn.jpg" class="d-block rounded-5" width="100%" height="400px"
+                        alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h2>Second slide label</h2>
                         <p>Some representative placeholder content for the second slide.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="../assets/image/banner/corn.jpg" class="d-block rounded-5" width="100%" height="400px" alt="...">
+                    <img src="../assets/image/banner/corn.jpg" class="d-block rounded-5" width="100%" height="400px"
+                        alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h2>Third slide label</h2>
                         <p>Some representative placeholder content for the third slide.</p>
@@ -50,9 +53,26 @@ img {
     object-fit: cover;
 }
 
-.desc{
-    border: 1px solid #242424;
-    transform: translate(0, -100px);
+.desc {
+    /* border: 1px solid #242424; */
+    transform: translate(-40px, -100px);
     width: 400px;
+}
+
+.custom-img {
+    background-color: #E9FFE6;
+    height: 400px;
+    width: 100%;
+}
+
+.banner {
+    background-image: url('../assets/image/banner/banner.png');
+
+}
+
+.custom-carousel {
+    border: 1px solid black;
+    margin-left: 670px;
+    transform: translateY(50px);
 }
 </style>
