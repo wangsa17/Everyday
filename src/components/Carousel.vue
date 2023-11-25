@@ -1,48 +1,43 @@
 <template>
-    <div class="container mt-3">
-        <div id="carouselExampleDark" class="carousel carousel-dark slide">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
+    <div class="custom-carousel">
+        <div class="container mt-3">
+
+            <div id="carouselExampleRide" class="carousel carousel-dark slide" data-bs-ride="true">
+                <div class="carousel-inner">
+                    <div class="carousel-item active custom-cimg rounded-5">
+                        <img src="../assets/image/banner/banner1.png" class="my-auto custom-img" width="350px" alt="...">
+                        <div class="carousel-caption desc text-dark">
+                            <h1>Don’t miss amazing grocery deals</h1>
+                            <p>Save 50% off on your first order</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item custom-cimg rounded-5">
+                        <img src="../assets/image/banner/bahan-pokok.png" class="my-auto custom-img" width="350px"
+                            alt="...">
+                        <div class="carousel-caption desc text-dark">
+                            <h1>Don’t miss amazing grocery deals</h1>
+                            <p>Save 50% off on your first order</p>
+                        </div>
+                    </div>
+                    <!-- <div class="carousel-item custom-cimg rounded-5">
+                        <img src="../assets/image/banner/banner1.png" class="my-auto custom-img" width="350px" alt="...">
+                        <div class="carousel-caption desc text-dark">
+                            <h1>Don’t miss amazing grocery deals</h1>
+                            <p>Save 50% off on your first order</p>
+                        </div>
+                    </div> -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active custom-img rounded-5" data-bs-interval="10000">
-                    <img src="../assets/image/banner/bahan-pokok.png" class="my-auto custom-carousel" width="350px"
-                        alt="...">
-                    <div class="carousel-caption desc">
-                        <h1>Don’t miss amazing grocery deals</h1>
-                        <p>Save 50% off on your first order</p>
-                    </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="../assets/image/banner/corn.jpg" class="d-block rounded-5" width="100%" height="400px"
-                        alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2>Second slide label</h2>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="../assets/image/banner/corn.jpg" class="d-block rounded-5" width="100%" height="400px"
-                        alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2>Third slide label</h2>
-                        <p>Some representative placeholder content for the third slide.</p>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </div>
 </template>
@@ -59,20 +54,20 @@ img {
     width: 400px;
 }
 
-.custom-img {
+.custom-cimg {
     background-color: #E9FFE6;
     height: 400px;
     width: 100%;
 }
 
 .banner {
-    background-image: url('../assets/image/banner/banner.png');
+    background-image: url('../assets/image/banner/banner1.png');
 
 }
 
-.custom-carousel {
-    border: 1px solid black;
+.custom-img {
     margin-left: 670px;
     transform: translateY(50px);
+    border: none;
 }
 </style>

@@ -1,10 +1,7 @@
-<script setup>
-// import Navbar from './components/Navbar.vue'
-// import Footer from './components/Footer.vue'
-</script>
-
 <template>
-  <router-view></router-view>
-  <!-- <Navbar />
-  <Footer /> -->
+  <div class="app">
+    <router-view></router-view>
+  </div>
 </template>
+
+

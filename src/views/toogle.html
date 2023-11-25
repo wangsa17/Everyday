@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Toggle Button</title>
+  <style>
+    /* Style untuk button */
+    .toggle-btn {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+      background-color: #ccc;
+      border-radius: 15px;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    /* Gaya untuk bulatan dalam toggle button */
+    .toggle-btn::before {
+      content: '';
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      background-color: #fff;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s;
+    }
+
+    /* Gaya untuk teks pada toggle button */
+    .toggle-text {
+      font-family: Arial, sans-serif;
+      color: #333;
+      font-size: 14px;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    /* Gaya ketika tombol diaktifkan */
+    .toggle-btn.active {
+      background-color: #4CAF50;
+    }
+
+    /* Gaya ketika tombol diaktifkan dan animasi bulatan bergerak ke kanan */
+    .toggle-btn.active::before {
+      transform: translateX(30px);
+    }
+  </style>
+</head>
+<body>
+
+<label class="toggle-btn" onclick="toggleButton()">
+</label>
+
+<script>
+  // Fungsi untuk toggle button
+  function toggleButton() {
+    var button = document.querySelector('.toggle-btn');
+    // Toggle class 'active'
+    button.classList.toggle('active');
+  }
+</script>
+
+</body>
+</html>

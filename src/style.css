@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kavoon&family=Ledger&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +10,14 @@
     --cprimary: #E76202;
     --cdark: #242424;
     --clight: #EEEEEE;
+    --fprimary: 'Ledger', serif;
+    --flogo: 'Kavoon', serif;
 }
 
-body {
-    /* height: 400vh; */
+a {
+    text-decoration: none;
+    font-family: var(--fprimary);
 }
+ .container{
+    border: none;
+ }

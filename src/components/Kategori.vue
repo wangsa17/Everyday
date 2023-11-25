@@ -99,6 +99,7 @@
 .custom-img{
     width: 80%;
     margin-top: -20px;
+    border: none;
 }
 .custom-img-sugar{
     width: 80%;

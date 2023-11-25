@@ -1,14 +1,10 @@
-<script setup>
-import NavbarVue from '../components/Navbar.vue';
-</script>
-
 <template>
     <NavbarVue />
     <div class="container">
-        <div class="login mb-3">
+        <div class="login mb-3 mt-0">
             <div class="row">
                 <div class="col">
-                    <img src="../assets/image/imgLogin.jpg" alt="">
+                    <img src="../assets/image/login.jpg" style="width: 500px;" alt="">
                 </div>
                 <div class="col" style="margin-top: 50px;">
                     <h2>Login</h2>
@@ -22,25 +18,40 @@ import NavbarVue from '../components/Navbar.vue';
                             placeholder="Username or Email*" required>
                         <input type="password" class="form-control custom-input" id="password" name="password"
                             placeholder="Your password*" required>
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control custom-input-code" id="code" name="code"
-                                    placeholder="Code*" size="10" required>
-                            </div>
-                            <div class="col">
-                                <span class="custom-code-span">12345</span>
-                            </div>
-                        </div>
-                        <label for="remember-me">Remember me</label>
+                        <label for="remember-me" class="mb-3"><input class="form-check-input">Remember me</label>
                         <a href="forgot_password.html" style="margin-left: 30px;">Forgot Password?</a>
 
-                        <input type="submit" value="Log in" class="login-button">
                     </form>
+                    <router-link to="/HomeLogin" @click="notifyAndRedirect" class="login-button">Login</router-link>
+                    <!-- <button @click="notifyAndRedirect">Login</button> -->
+
                 </div>
             </div>
         </div>
     </div>
+    <Futer />
 </template>
+<script>
+import NavbarVue from '../components/Navbar.vue';
+import Futer from '../components/Futer.vue';
+
+import { toast } from 'vue3-toastify';
+import { useRouter } from 'vue-router';
+
+export default {
+    name: 'login',
+    components: {
+        NavbarVue, Futer,
+    },
+    // components/Sender.js
+    methods: {
+        notify() {
+            // Kirim pesan ke halaman lain
+            this.$store.dispatch('showToast', { title: 'User telah login', toastId: 'custom id', position: 'top-right' });
+        },
+    },
+};
+</script>
 
 <style scoped>
 .login {
@@ -132,7 +143,7 @@ input[type="text"]#code {
     margin-right: 10%;
     /* Menambahkan margin antara input dan span */
     background: linear-gradient(45deg, #ff5733, #ffdb58, #33ff57, #337aff, #b833ff);
-    -webkit-background-clip: text;
+    /* -webkit-background-clip: text; */
     color: transparent;
     text-align: center;
     -webkit-text-fill-color: transparent;
@@ -147,7 +158,8 @@ input[type="text"]#code {
     padding: 10px 40px;
     border-radius: 10px;
     cursor: pointer;
-    margin-right: 315px;
+    margin-right: 31px;
+    transform: translateY(50px);
 }
 
 #remember-me,

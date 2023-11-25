@@ -73,6 +73,7 @@
 .custom-img {
     width: 130px;
     z-index: 1;
-    margin: -20px 0 0 50px;
+    margin: -30px 0 0 50px;
+    border: none;
 }
 </style>
