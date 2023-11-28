@@ -23,10 +23,8 @@ import Futer from '../components/Futer.vue'
                     <div class="mb-3">
                         <input type="text" class="form-control custom-input" placeholder="Confirm Password">
                     </div>
-                    <div class="mb-3">
-                        <button type="button" class="btn-custom">Register</button>
-                    </div>
                 </form>
+                <router-link to="/login" class="btn-custom mt-5">Register</router-link>
             </div>
             <div class="col-3 medsos">
                 <a href="" class="facebook mb-1 d-flex align-items-center"><i
@@ -90,13 +88,14 @@ a {
 
 .btn-custom {
     background-color: #E76202;
-    padding: 20px 30px;
-    width: 250px;
-    color: #fff;
-    border-radius: 12px;
+    /* Set your desired background color for the button */
     border: none;
-    font-size: 20px;
-    transition: box-shadow 0.3s;
+    color: #fff;
+    padding: 10px 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 31px;
+    transform: translateY(50px);
 }
 
 .btn-custom:hover {
@@ -113,7 +112,7 @@ a {
     margin: 100px 0 0 50px;
     border: 1px solid #dddddd;
     width: 350px;
-    height: 250px;
+    height: 275px;
     border-radius: 12px;
     padding: 40px;
     display: flex;
@@ -165,4 +164,5 @@ a {
 .apple:hover {
     transform: translateY(-5px);
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-}</style>
+}
+</style>

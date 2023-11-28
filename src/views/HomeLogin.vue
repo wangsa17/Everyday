@@ -1,25 +1,3 @@
-<script>
-import NavbarVue from '../components/Navbar.vue'
-import Kategori from '../components/Kategori.vue'
-import KategoriTriVue from '../components/KategoriTri.vue'
-import CarouselVue from '../components/Carousel.vue'
-import PopularPVue from '../components/PopularP.vue'
-import SubscribeVue from '../components/Subscribe.vue'
-import Futer from '../components/Futer.vue'
-
-export default {
-    name: 'HomeLogin',
-    components: {
-        NavbarVue, CarouselVue, Kategori, KategoriTriVue, PopularPVue, SubscribeVue, Futer
-    },
-    methods: {
-        processToCheckout() {
-            // Navigasi ke halaman "/payment"
-            this.$router.push('/payment');
-        },
-    }
-}
-</script>
 <script setup>
 import { ref } from 'vue'
 const count = ref(1)
@@ -40,7 +18,7 @@ const count = ref(1)
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav" style="margin-left: 80px;">
                         <li class="nav-item">
-                            <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
+                            <router-link class="nav-link" aria-current="page" to="/HomeLogin">Home</router-link>
                         </li>
                         <li class="nav-item">
                             <!-- <router-link class="nav-link" to="/about">Tentang Kami</router-link> -->
@@ -54,12 +32,9 @@ const count = ref(1)
                                         class="fa fa-user"></i> User</button>
                                 <ul class="dropdown-menu">
                                     <router-link to="/" class="dropdown-item">Logout</router-link>
-                                    <li>
-                                    </li>
                                 </ul>
                             </div>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -112,58 +87,31 @@ const count = ref(1)
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr v-for="item in cart" :key="item.id">
                                                 <td scope="row" class="text-center">
                                                     <input type="checkbox" name="" class="form-check-input" id="">
                                                 </td>
                                                 <td class="text-start" style="width: 350px">
                                                     <!-- <img src="../assets/image/produk/minyak3.png" width="150px" alt="Minyak"> -->
-                                                    <img src="../assets/image/produk/minyak1.png" class="custom-img" alt=""
+                                                    <img :src="item.imgUrl" :alt="item.title" class="custom-img"
                                                         style="width: 100px;">
-                                                    Filma cooking oil 2 liters
+                                                    {{ item.title }}
                                                 </td>
-                                                <td class="text-center">Rp 38.000</td>
+                                                <td class="text-center">Rp {{ item.price }}</td>
                                                 <td class="text-center">
                                                     <div class="d-flex align-items-center justify-content-center">
                                                         <button type="button" @click="count++"
                                                             class="square border-0 me-1"><i
                                                                 class="fa-solid fa-plus"></i></button>
                                                         <p class="qty my-auto">
-                                                            {{ count }}
+                                                            {{ item.qty }}
                                                         </p>
                                                         <button type="button" @click="count--"
                                                             class="square border-0 ms-1"><i
                                                                 class="fa-solid fa-minus"></i></button>
                                                     </div>
                                                 </td>
-                                                <td class="text-center">Rp 38.000</td>
-                                                <td class="text-center"><i class="fa-solid fa-trash"></i></td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="row" class="text-center">
-                                                    <input type="checkbox" name="" class="form-check-input" id="">
-                                                </td>
-                                                <td class="text-start" style="width: 350px">
-                                                    <!-- <img src="../assets/image/produk/minyak3.png" width="150px" alt="Minyak"> -->
-                                                    <img src="../assets/image/produk/minyak1.png" class="custom-img" alt=""
-                                                        style="width: 100px;">
-                                                    Filma cooking oil 2 liters
-                                                </td>
-                                                <td class="text-center">Rp 38.000</td>
-                                                <td class="text-center">
-                                                    <div class="d-flex align-items-center justify-content-center">
-                                                        <button type="button" @click="count++"
-                                                            class="square border-0 me-1"><i
-                                                                class="fa-solid fa-plus"></i></button>
-                                                        <p class="qty my-auto">
-                                                            {{ count }}
-                                                        </p>
-                                                        <button type="button" @click="count--"
-                                                            class="square border-0 ms-1"><i
-                                                                class="fa-solid fa-minus"></i></button>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">Rp 38.000</td>
+                                                <td class="text-center">Rp {{ totalPriceID }}</td>
                                                 <td class="text-center"><i class="fa-solid fa-trash"></i></td>
                                             </tr>
                                         </tbody>
@@ -197,43 +145,6 @@ const count = ref(1)
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="row">
-                                        <div class="col-8">
-                                            <div class="card border-0">
-                                                <div class="card-body">
-                                                    <div class="row custom-row">
-                                                        <div class="col">
-                                                            <input type="checkbox" name="" id="">
-                                                        </div>
-                                                        <div class="col-4">Product</div>
-                                                        <div class="col">Unit Price</div>
-                                                        <div class="col">Quantity</div>
-                                                        <div class="col">Subtotal</div>
-                                                        <div class="col">Remove</div>
-                                                    </div>
-                                                    <div class="row custom-row">
-                                                        <div style="width:30px;">
-                                                            <input type="checkbox" name="" id="">
-                                                        </div>
-                                                        <div class="col-4 ms-0 text-center">
-                                                            <img src="../assets/image/produk/minyak1.png" class="custom-img"
-                                                                alt="" style="width: 100px;">
-                                                            <p>Bimoli cooking oil 2 liters</p>
-                                                        </div>
-
-                                                        <div class="col">Rp. 38.000</div>
-                                                        <div class="col custom-qty">
-                                                            <div class="square me-1"><i class="fa-solid fa-plus"></i></div>
-                                                            1
-                                                            <div class="square ms-1"><i class="fa-solid fa-minus"></i></div>
-                                                        </div>
-                                                        <div class="col">Rp. 38.000</div>
-                                                        <div class="col"><i class="fa-solid fa-trash"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -243,7 +154,6 @@ const count = ref(1)
         </nav>
     </div>
     <router-view></router-view>
-
     <CarouselVue></CarouselVue>
     <Kategori></Kategori>
     <KategoriTriVue></KategoriTriVue>
@@ -261,168 +171,21 @@ const count = ref(1)
                 <li><a href="#" class="PP">Sugar</a></li>
                 <li><a href="#" class="PP">Egg</a></li>
             </ul>
-            <div class="row justify-content-center grid gap-2 custom-pp">
-                <div class="col">
-                    <div class="mt-2 custom-product">
-                        <div class="row ms-1">
-                            <img class="pt-2 custom-image" src="../assets/image/produk/minyak2.png" alt="productName">
-                        </div>
-                        <div class="card-body d-flex flex-wrap align-items-end custom-content mt-4">
-                            <div>Oil</div>
-                            <h4 class="card-title mt-0 custom-name-produk">Filma cooking oil 2 liters</h4>
-                            <div>Rp 35.500</div>
-
-                            <!-- <i class="fa-solid fa-cart-shopping me-2"></i> -->
-                            <!-- <router-link to="/login">Lihat Product</router-link> -->
-                        </div>
-                        <a href="#modal1" class="btn text-white w-100 custom-btn" data-bs-toggle="modal"
-                            data-bs-target="#modal1 " style="margin-top: 30px;">See Product</a>
+            <div class="justify-content-center grid gap-4 custom-pp">
+                <div class="mt-2 custom-product" v-for="item in products" :key="item.id">
+                    <div class="row ms-1 custom-wadah ">
+                        <img class="pt-2 custom-image mx-auto" :src="item.imgUrl" :alt="item.title">
                     </div>
-                </div>
-                <div class="col">
-                    <div class="mt-2 custom-product">
-                        <div class="row ms-1">
-                            <img class="pt-2 custom-image" src="../assets/image/produk/beras2.png" alt="productName"
-                                style="margin-top: 10px;margin-bottom: 30px;">
-                        </div>
-                        <div class="card-body d-flex flex-wrap align-items-end custom-content mt-4">
-                            <div>Rice</div>
-                            <h4 class="card-title mt-0 custom-name-produk">HOTEL Premium Organic Brown Rice 2kg</h4>
-                            <div>Rp 35.500</div>
-
-                            <!-- <i class="fa-solid fa-cart-shopping me-2"></i> -->
-                            <!-- <router-link to="/login">Lihat Product</router-link> -->
-                        </div>
-                        <a href="#modal1" class="btn text-white w-100 custom-btn" data-bs-toggle="modal"
-                            data-bs-target="#modal1 " style="margin-top: 10px;">See Product</a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mt-2 custom-product">
-                        <div class="row ms-1">
-                            <img class="pt-2 custom-image" src="../assets/image/produk/tepung1.png" alt="productName"
-                                style="margin-top: 10px;margin-bottom: 30px;">
-                        </div>
-                        <div class="card-body d-flex flex-wrap align-items-end custom-content mt-4">
-                            <div>Flour</div>
-                            <h4 class="card-title mt-0 custom-name-produk">Blue Triangle Wheat Flour 1kg</h4>
-                            <div>Rp 35.500</div>
-
-                            <!-- <i class="fa-solid fa-cart-shopping me-2"></i> -->
-                            <!-- <router-link to="/login">Lihat Product</router-link> -->
-                        </div>
-                        <a href="#modal1" class="btn text-white w-100 custom-btn" data-bs-toggle="modal"
-                            data-bs-target="#modal1 " style="margin-top: 10px;">See Product</a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mt-2 custom-product">
-                        <div class="row ms-1">
-                            <img class="pt-2 custom-image" src="../assets/image/produk/gula2.png" alt="productName"
-                                style="margin-top: 10px;margin-bottom: 15px;">
-                        </div>
-                        <div class="card-body d-flex flex-wrap align-items-end custom-content mt-4">
-                            <div>Sugar</div>
-                            <h4 class="card-title mt-0 custom-name-produk">Tropicana Slim Sweetener Classic 500g</h4>
-                            <div>Rp 35.500</div>
-
-                            <!-- <i class="fa-solid fa-cart-shopping me-2"></i> -->
-                            <!-- <router-link to="/login">Lihat Product</router-link> -->
-                        </div>
-                        <a href="#modal1" class="btn text-white w-100 custom-btn" data-bs-toggle="modal"
-                            data-bs-target="#modal1 " style="margin-top: 10px;">See Product</a>
+                    <div class="row card-body d-flex flex-wrap align-items-end custom-content mt-4">
+                        <div>{{ item.category }}</div>
+                        <h4 class="card-title mt-0 custom-name-produk">{{ item.title }}</h4>
+                        <div>Rp {{ item.price }}</div>
+                        <a @click="addToCart(item)" data-bs-toggle="modal" data-bs-target="#modalCart"
+                            class="btn text-white w-100 custom-btn d-flex align-items-end px-2 justify-content-center"
+                            style="margin-top: 30px;"><i class="fa fa-shopping-cart me-2 mb-1"></i>Add To Cart</a>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center grid gap-2 custom-pp mt-4">
-                <div class="col">
-                    <div class="mt-2 custom-product">
-                        <div class="row ms-1">
-                            <img class="pt-2 custom-image" src="../assets/image/produk/egg3.png" alt="productName" style="margin-top: 30px;margin-bottom: 60px;">
-                        </div>
-                        <div class="card-body d-flex flex-wrap align-items-end custom-content mt-4">
-                            <div>Egg</div>
-                            <h4 class="card-title mt-0 custom-name-produk">Fresh Healthy Omega Egg 10 pcs</h4>
-                            <div>Rp 27.000</div>
-
-                            <!-- <i class="fa-solid fa-cart-shopping me-2"></i> -->
-                            <!-- <router-link to="/login">Lihat Product</router-link> -->
-                        </div>
-                        <a href="#modal1" class="btn text-white w-100 custom-btn" data-bs-toggle="modal"
-                            data-bs-target="#modal1 " style="margin-top: 30px;">See Product</a>
-
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mt-2 custom-product">
-                        <div class="row ms-1">
-                            <img class="pt-2 custom-image" src="../assets/image/produk/mie2.png" alt="productName"
-                                style="margin-top: 10px;margin-bottom: 30px;">
-                        </div>
-                        <div class="card-body d-flex flex-wrap align-items-end custom-content mt-4">
-                            <div>Mie</div>
-                            <h4 class="card-title mt-0 custom-name-produk">Gekikara Ramen HOT Carbo 120g</h4>
-                            <div>Rp 7.000</div>
-
-                            <!-- <i class="fa-solid fa-cart-shopping me-2"></i> -->
-                            <!-- <router-link to="/login">Lihat Product</router-link> -->
-                        </div>
-                        <a href="#modal1" class="btn text-white w-100 custom-btn" data-bs-toggle="modal"
-                            data-bs-target="#modal1 " style="margin-top: 10px;">See Product</a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mt-2 custom-product">
-                        <div class="row ms-1">
-                            <img class="pt-2 custom-image" src="../assets/image/produk/rose_brand_gula_tebu.png" alt="productName"
-                                style="margin-top: 10px;margin-bottom: 20px;">
-                        </div>
-                        <div class="card-body d-flex flex-wrap align-items-end custom-content mt-4">
-                            <div>Sugar</div>
-                            <h4 class="card-title mt-0 custom-name-produk">Rose Brand Cane Sugar 1kg</h4>
-                            <div>Rp 14.500</div>
-
-                            <!-- <i class="fa-solid fa-cart-shopping me-2"></i> -->
-                            <!-- <router-link to="/login">Lihat Product</router-link> -->
-                        </div>
-                        <a href="#modal1" class="btn text-white w-100 custom-btn" data-bs-toggle="modal"
-                            data-bs-target="#modal1 " style="margin-top: 10px;">See Product</a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mt-2 custom-product">
-                        <div class="row ms-1">
-                            <img class="pt-2 custom-image" src="../assets/image/produk/minyak1.png" alt="productName"
-                                style="margin-top: 10px;margin-bottom: 30px;">
-                        </div>
-                        <div class="card-body d-flex flex-wrap align-items-end custom-content mt-4">
-                            <div>Oil</div>
-                            <h4 class="card-title mt-0 custom-name-produk">Sania Royale Palm Cooking Oil 1 liter</h4>
-                            <div>Rp 19.500</div>
-
-                            <!-- <i class="fa-solid fa-cart-shopping me-2"></i> -->
-                            <!-- <router-link to="/login">Lihat Product</router-link> -->
-                        </div>
-                        <a href="#modal1" class="btn text-white w-100 custom-btn" data-bs-toggle="modal"
-                            data-bs-target="#modal1 " style="margin-top: 10px;">See Product</a>
-                    </div>
-                </div>
-            </div>
-            <!-- <nav aria-label="..." class="d-flex justify-content-center mt-2 custom-pagi">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <span class="page-link">Previous</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">2</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav> -->
         </div>
 
     </section>
@@ -442,12 +205,12 @@ const count = ref(1)
                 <div class="modal-body" style="background-color: #eee;">
                     <div class="row">
                         <div class="col-5">
-                            <img src="../assets/image/produk/minyak2.png" width="150px" class="ms-3" alt="">
+                            <img src="../assets/image/produk/minyak3.png" width="150px" class="ms-3">
                         </div>
                         <div class="col-7">
                             <div style="margin-top: 70px;">Oil</div>
-                            <h4 class="card-title mt-0 custom-name-produk">Filma cooking oil 2 liters</h4>
-                            <div>Rp 35.500</div>
+                            <h4 class="card-title mt-0 custom-name-produk">Filma</h4>
+                            <div>Rp 30000</div>
                         </div>
                     </div>
                     <div class="row">
@@ -467,6 +230,42 @@ const count = ref(1)
         </div>
     </div>
 </template>
+
+<script>
+import NavbarVue from '../components/Navbar.vue'
+import Kategori from '../components/Kategori.vue'
+import KategoriTriVue from '../components/KategoriTri.vue'
+import CarouselVue from '../components/Carousel.vue'
+import PopularPVue from '../components/PopularP.vue'
+import SubscribeVue from '../components/Subscribe.vue'
+import Futer from '../components/Futer.vue'
+import { mapGetters, mapActions } from 'vuex';
+
+export default {
+    name: 'Home',
+    components: {
+        NavbarVue, CarouselVue, Kategori, KategoriTriVue, PopularPVue, SubscribeVue, Futer
+    },
+    computed: {
+        ...mapGetters(["products", "productDetail", "cart"]),
+        totalPriceID() {
+            const findIdProduct = state.cart.find(product => product.id === item.id);
+            if (findIdProduct) {
+                return this.cart.reduce((a, b) => a + b.qty * b.price, 0);
+            }
+        },
+        totalPrice() {
+            return this.cart.reduce((a, b) => a + b.qty * b.price, 0);
+        },
+    },
+    methods: {
+        ...mapActions(["getProducts", "addToCart", "addQty", "reduceQty", "removeItem", "emptyCart", "getProductDetail"]),
+    },
+    mounted() {
+        this.getProducts();
+    }
+}
+</script>
 
 <style scoped>
 a {
@@ -640,7 +439,18 @@ span:hover {
     font-size: 18px;
 }
 
+.custom-pp {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.custom-content {
+    margin-top: 20px;
+}
+
 .custom-product {
+    width: 250px;
     height: 375px;
     padding: 20px;
     border: 1px solid rgb(128, 128, 128);
@@ -659,14 +469,20 @@ span:hover {
     /* border: 1px solid #000; */
 }
 
+.custom-wadah {
+    height: 180px;
+}
+
 .custom-image {
-    margin-top: -20px;
-    width: 150px;
-    transform: translateX(30px);
+    width: 80%;
+    object-fit: contain;
+    /* margin-top: -20px; */
+    /* transform: translateX(30px); */
 }
 
 .custom-btn {
     background-color: #E76202;
+    text-align: center;
 }
 
 .custom-btn:hover {

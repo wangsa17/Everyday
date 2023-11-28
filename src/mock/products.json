@@ -1,0 +1,99 @@
+[
+    {
+      "id": 1,
+      "category": "Rice",
+      "title": "Maknyuss Rice",
+      "desc": "",
+      "price": 20000,
+      "imgUrl": "../assets/image/produk/beras1.png"
+    },
+    {
+      "id": 2,
+      "category": "Rice",
+      "title": "Premium Brown Rice",
+      "desc": "",
+      "price": 35000,
+      "imgUrl": "../assets/image/produk/beras2.png"
+    },
+    {
+      "id": 3,
+      "category": "Rice",
+      "title": "Fragrant Pandan Rice",
+      "desc": "",
+      "price": 69500,
+      "imgUrl": "../assets/image/produk/beras3.png"
+    },
+    {
+      "id": 4,
+      "category": "Egg",
+      "title": "Chicken Eggs",
+      "desc": "",
+      "price": 22000,
+      "imgUrl": "../assets/image/produk/egg1.png"
+    },
+    {
+      "id": 5,
+      "category": "Egg",
+      "title": "Salted Egg",
+      "desc": "",
+      "price": 20500,
+      "imgUrl": "../assets/image/produk/egg2.png"
+    },
+    {
+      "id": 6,
+      "category": "Egg",
+      "title": "Omega Egg",
+      "desc": "",
+      "price": 28500,
+      "imgUrl": "../assets/image/produk/egg3.png"
+    },
+    {
+      "id": 7,
+      "category": "Mie",
+      "title": "Indomie Rendang Flavor",
+      "desc": "",
+      "price": 4100,
+      "imgUrl": "../assets/image/produk/mie3.png"
+    },
+    {
+      "id": 8,
+      "category": "Mie",
+      "title": "Korena Spicy Chicken",
+      "desc": "",
+      "price": 5000,
+      "imgUrl": "../assets/image/produk/mie5.png"
+    },
+    {
+      "id": 9,
+      "category": "Oil",
+      "title": "Sania Oil",
+      "desc": "",
+      "price": 25000,
+      "imgUrl": "../assets/image/produk/minyak1.png"
+    },
+    {
+      "id": 10,
+      "category": "Oil",
+      "title": "Oil Filma",
+      "desc": "Filma Cooking Oil 2 Liters, pilihan praktis untuk hidangan lezat. Kemasan 2 liter memberikan kelezatan dan keempukan di setiap masakan. Cocok untuk menggoreng, menggulai, dan memberikan nutrisi terbaik",
+      "price": 20000,
+      "imgUrl": "../assets/image/produk/minyak2.png"
+    },
+    {
+      "id": 11,
+      "category": "Flour",
+      "title": "Flour Segitiga Biru",
+      "desc": "",
+      "price": 30000,
+      "imgUrl": "../assets/image/produk/tepung-roseBrand.png"
+    },
+    {
+      "id": 12,
+      "category": "Oil",
+      "title": "Oil Bimoli",
+      "desc": "",
+      "price": 27000,
+      "imgUrl": "../assets/image/produk/minyak3.png"
+    }
+  ]
+  
