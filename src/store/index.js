@@ -5,20 +5,22 @@ export default createStore({
     state: {
         products: [],
         productDetail: [],
-        cart: []
+        cart: [],
+        payment: []
     },
 
     getters: {
         products: state => state.products,
         productDetail: state => state.productDetail,
         cart: state => state.cart,
+        payment: state => state.payment,
     },
     actions: {
         getProducts({ commit }){
             commit("getProductData");
         },
-        productDetail({ commit }, item){
-            commit("productItemDetail", item);
+        detailProduct({ commit }, item){
+            commit("detailItemProduct", item);
         },
         addToCart({ commit }, item){
             commit("addItemToCart", item);
@@ -34,14 +36,23 @@ export default createStore({
         },
         emptyCart({ commit }){
             commit("emptyCart");
+        },
+        processToHomeLogin({commit}, id){
+            commit("processToHomeLogin");
+        },
+        processCheckout({ commit }, item){
+            commit("processItemCheckout");
+        },
+        subTotalPrice({commit}, item ){
+            commit("subTotalPrice");
         }
     },
     mutations: {
         getProductData(state){
             state.products = products;
         },
-        productItemProduct(state, item){
-            const addedItem = state.productDetial.find(product => product.id === item.id);
+        detailItemProduct(state, item){
+            return state.productDetail.find(product => product.id === item.id);
         },
         addItemToCart(state, item){
             const addedItem = state.cart.find(product => product.id === item.id);
@@ -57,7 +68,7 @@ export default createStore({
         },
         reduceQty(state, id){
             const currentItem = state.cart.find(product => product.id === id);
-            if(currentItem > 1){
+            if (currentItem && currentItem.qty > 1){
                 currentItem.qty--;
             } else {
                 state.cart = state.cart.filter(product => product.id !== id);
@@ -68,6 +79,17 @@ export default createStore({
         },
         emptyCart(state){
             state.cart = [];
+        },
+        processToHomeLogin(state){
+            state.cart = [];
+        },
+        processItemCheckout(state){
+            state.payment = [];
+        },
+        subTotalPrice(state, price, id){
+            const subPrice = state.cart.find(product => product.price === item.price);
+            const subTotal = state.cart.find(product => product.id === id);
+            subPrice * subTotal.qty;
         }
     },
 });

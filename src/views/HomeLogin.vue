@@ -3,6 +3,7 @@ import { ref } from 'vue'
 const count = ref(1)
 </script>
 <template>
+    <!-- Navbar -->
     <div class="custom-header container-fluid mx-auto w-100">
         <nav class="navbar navbar-expand-lg bg-white text-dark bg-">
             <div class="container navPri">
@@ -11,6 +12,7 @@ const count = ref(1)
                         <a class="navbar-brand" href="#" id="no">+62678565767</a>
                     </div>
                 </div>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -54,7 +56,7 @@ const count = ref(1)
                     <label>
                         <input type="checkbox" style="display: none;" data-bs-toggle="modal" data-bs-target="#modalCart">
                         <i class="fa-solid fa-cart-shopping me-1"></i>
-                        Cart
+                        Cart ({{ totalQty }})
                     </label>
 
                     <!-- Modal -->
@@ -87,12 +89,16 @@ const count = ref(1)
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <tr v-if="!cart.length">
+                                                <td class="text-center" colspan="6">
+                                                    <h4 style="width: 100%" class="text-center"> No Product in cart!</h4>
+                                                </td>
+                                            </tr>
                                             <tr v-for="item in cart" :key="item.id">
                                                 <td scope="row" class="text-center">
                                                     <input type="checkbox" name="" class="form-check-input" id="">
                                                 </td>
                                                 <td class="text-start" style="width: 350px">
-                                                    <!-- <img src="../assets/image/produk/minyak3.png" width="150px" alt="Minyak"> -->
                                                     <img :src="item.imgUrl" :alt="item.title" class="custom-img"
                                                         style="width: 100px;">
                                                     {{ item.title }}
@@ -100,26 +106,28 @@ const count = ref(1)
                                                 <td class="text-center">Rp {{ item.price }}</td>
                                                 <td class="text-center">
                                                     <div class="d-flex align-items-center justify-content-center">
-                                                        <button type="button" @click="count++"
+                                                        <button type="button" @click="addQty(item.id)"
                                                             class="square border-0 me-1"><i
                                                                 class="fa-solid fa-plus"></i></button>
                                                         <p class="qty my-auto">
                                                             {{ item.qty }}
                                                         </p>
-                                                        <button type="button" @click="count--"
+                                                        <button type="button" @click="reduceQty(item.id)"
                                                             class="square border-0 ms-1"><i
                                                                 class="fa-solid fa-minus"></i></button>
                                                     </div>
                                                 </td>
-                                                <td class="text-center">Rp {{ totalPriceID }}</td>
-                                                <td class="text-center"><i class="fa-solid fa-trash"></i></td>
+                                                <td class="text-center">Rp {{ subTotalP }}</td>
+                                                <td class="text-center"><i class="fa-solid fa-trash"
+                                                        @click="removeItem(item.id)"></i></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="row">
                                         <div class="col-2">
-                                            <button type="button" class="btn btn-primary"
-                                                style="border: none;background-color: #e76202">Continue Shipping</button>
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                                aria-label="Close" style="border: none;background-color: #e76202">Continue
+                                                Shipping</button>
                                         </div>
                                         <div class="col-2">
                                             <button type="button" class="btn btn-primary"
@@ -127,12 +135,12 @@ const count = ref(1)
                                         </div>
                                         <div class="col-4"></div>
                                         <div class="col-4">
-                                            <div class="d-block justify-content-center"
+                                            <div class="d-block justify-content-center" v-if="cart.length"
                                                 style="border: 1px solid #eee;border-radius: 15px;height: 120px;width:100%;padding: 20px">
                                                 <table>
                                                     <tr>
-                                                        <td style="width:240px;">Total</td>
-                                                        <td>Rp 38.000</td>
+                                                        <td style="width:220px;">Total</td>
+                                                        <td>Rp {{ totalPrice }}</td>
                                                     </tr>
                                                 </table>
                                                 <!-- <h4>Total</h4>
@@ -153,6 +161,7 @@ const count = ref(1)
             </div>
         </nav>
     </div>
+    <!-- EndNavbar -->
     <router-view></router-view>
     <CarouselVue></CarouselVue>
     <Kategori></Kategori>
@@ -173,7 +182,8 @@ const count = ref(1)
             </ul>
             <div class="justify-content-center grid gap-4 custom-pp">
                 <div class="mt-2 custom-product" v-for="item in products" :key="item.id">
-                    <div class="row ms-1 custom-wadah ">
+                    <div class="row ms-1 custom-wadah" @click="detailProduct(item)" data-bs-toggle="modal"
+                        data-bs-target="#modal1">
                         <img class="pt-2 custom-image mx-auto" :src="item.imgUrl" :alt="item.title">
                     </div>
                     <div class="row card-body d-flex flex-wrap align-items-end custom-content mt-4">
@@ -209,8 +219,44 @@ const count = ref(1)
                         </div>
                         <div class="col-7">
                             <div style="margin-top: 70px;">Oil</div>
-                            <h4 class="card-title mt-0 custom-name-produk">Filma</h4>
-                            <div>Rp 30000</div>
+                            <h4 class="card-title mt-0 custom-name-produk">Filma oil</h4>
+                            <div>Rp 35500</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mx-2 p-2 rounded-3" style="background-color: #fff;width: 97%;">
+                            Filma Cooking Oil 2 Liters, pilihan praktis untuk hidangan lezat. Kemasan 2 liter memberikan
+                            kelezatan dan keempukan di setiap masakan. Cocok untuk menggoreng, menggulai, dan memberikan
+                            nutrisi terbaik
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: #eee;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="#modalCart" class="btn custom-btn text-white" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#modalCart"><i class="fa fa-shopping-cart"></i> Add To Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-vertical-center" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background-color: #e76202;">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Product Details</h1>
+                    <button type="button" class="btn-close btn-light" style="color: #fff;" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: #eee;">
+                    <div class="row">
+                        <div class="col-5">
+                            <img src="../assets/image/produk/minyak2.png" width="150px" class="ms-3" alt="">
+                        </div>
+                        <div class="col-7">
+                            <div style="margin-top: 70px;">Oil</div>
+                            <h4 class="card-title mt-0 custom-name-produk">Filma cooking oil 2 liters</h4>
+                            <div>Rp 35.500</div>
                         </div>
                     </div>
                     <div class="row">
@@ -232,7 +278,6 @@ const count = ref(1)
 </template>
 
 <script>
-import NavbarVue from '../components/Navbar.vue'
 import Kategori from '../components/Kategori.vue'
 import KategoriTriVue from '../components/KategoriTri.vue'
 import CarouselVue from '../components/Carousel.vue'
@@ -242,28 +287,57 @@ import Futer from '../components/Futer.vue'
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+    data() {
+        return {
+            isProcessing: false,
+            orderPlaced: false,
+        };
+    },
     name: 'Home',
     components: {
-        NavbarVue, CarouselVue, Kategori, KategoriTriVue, PopularPVue, SubscribeVue, Futer
+        CarouselVue, Kategori, KategoriTriVue, PopularPVue, SubscribeVue
     },
     computed: {
         ...mapGetters(["products", "productDetail", "cart"]),
-        totalPriceID() {
-            const findIdProduct = state.cart.find(product => product.id === item.id);
-            if (findIdProduct) {
-                return this.cart.reduce((a, b) => a + b.qty * b.price, 0);
-            }
-        },
         totalPrice() {
             return this.cart.reduce((a, b) => a + b.qty * b.price, 0);
         },
+        totalQty() {
+            return this.cart.reduce((a, b) => a + b.qty, 0);
+        },
+        subTotalP() {
+            // Membuat objek untuk mengelompokkan produk berdasarkan ID
+            const groupedProducts = this.cart.reduce((groups, product) => {
+                const group = groups[product.id] || { totalQty: 0, totalPrice: 0 };
+                group.totalQty += product.qty;
+                group.totalPrice += product.qty * product.price;
+                groups[product.id] = group;
+                return groups;
+            }, {});
+
+            // Menghitung total subtotal dari semua kelompok produk
+            return Object.values(groupedProducts).reduce((subtotal, group) => subtotal + group.totalPrice, 0);
+        },
+
+
     },
     methods: {
-        ...mapActions(["getProducts", "addToCart", "addQty", "reduceQty", "removeItem", "emptyCart", "getProductDetail"]),
+        ...mapActions(["getProducts", "addToCart", "addQty", "reduceQty", "removeItem", "emptyCart", "detailProduct", "emptyCart", "subTotalPrice"]),
+        placeOrder() {
+            this.isProcessing = true;
+            setTimeout(() => {
+                this.orderPlaced = true;
+                this.isProcessing = false;
+                this.emptyCart();
+            }, 1000);
+        },
+        processToCheckout() {
+            this.$router.push('/payment');
+        },
     },
     mounted() {
         this.getProducts();
-    }
+    },
 }
 </script>
 

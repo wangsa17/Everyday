@@ -9,11 +9,11 @@
     },
     {
       "id": 2,
-      "category": "Rice",
-      "title": "Premium Brown Rice",
+      "category": "Egg",
+      "title": "Omega Egg",
       "desc": "",
-      "price": 35000,
-      "imgUrl": "../assets/image/produk/beras2.png"
+      "price": 28500,
+      "imgUrl": "../assets/image/produk/egg3.png"
     },
     {
       "id": 3,
@@ -41,11 +41,11 @@
     },
     {
       "id": 6,
-      "category": "Egg",
-      "title": "Omega Egg",
+      "category": "Rice",
+      "title": "Premium Brown Rice",
       "desc": "",
-      "price": 28500,
-      "imgUrl": "../assets/image/produk/egg3.png"
+      "price": 35000,
+      "imgUrl": "../assets/image/produk/beras2.png"
     },
     {
       "id": 7,
@@ -58,18 +58,18 @@
     {
       "id": 8,
       "category": "Mie",
-      "title": "Korena Spicy Chicken",
+      "title": "Mie Sedaap Selection",
       "desc": "",
-      "price": 5000,
-      "imgUrl": "../assets/image/produk/mie5.png"
+      "price": 30000,
+      "imgUrl": "../assets/image/produk/mie4.png"
     },
     {
       "id": 9,
-      "category": "Oil",
-      "title": "Sania Oil",
+      "category": "Rice",
+      "title": "Raja Platinum",
       "desc": "",
       "price": 25000,
-      "imgUrl": "../assets/image/produk/minyak1.png"
+      "imgUrl": "../assets/image/produk/beras4.png"
     },
     {
       "id": 10,
@@ -81,11 +81,11 @@
     },
     {
       "id": 11,
-      "category": "Flour",
-      "title": "Flour Segitiga Biru",
+      "category": "Mie",
+      "title": "Korena Spicy Chicken",
       "desc": "",
-      "price": 30000,
-      "imgUrl": "../assets/image/produk/tepung-roseBrand.png"
+      "price": 5000,
+      "imgUrl": "../assets/image/produk/mie5.png"
     },
     {
       "id": 12,

@@ -9,42 +9,13 @@ import Daftar from '../views/Daftar.vue'
 import Notify from '../views/notify.vue'
 
 const routes = [
-    {
-      path: "/",
-      name: "Home",
-      component: Home,
-    },
+    { path: "/", name: "Home", component: Home },
     { path: '/HomeLogin', name: 'HomeLogin', component: HomeLogin },
-    {
-      path: "/about",
-      name: "About",
-      component: About,
-    },
-    {
-      path: "/payment",
-      name: "Payment",
-      component: Payment,
-    },
-    {
-      path: "/history",
-      name: "History",
-      component: History,
-    },
-    {
-      path: "/login",
-      name: "Login",
-      component: Login,
-    },
-    {
-      path: "/daftar",
-      name: "Daftar",
-      component: Daftar,
-    },
-    {
-      path: "/notify",
-      name: "Notify",
-      component: Notify
-    }
+    { path: "/about", name: "About", component: About },
+    { path: "/payment", name: "Payment", component: Payment },
+    { path: "/history", name: "History", component: History },
+    { path: "/login", name: "Login", component: Login },
+    { path: "/daftar", name: "Daftar", component: Daftar },
   ];
 
 const router = createRouter({

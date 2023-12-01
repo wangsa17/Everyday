@@ -1,9 +1,5 @@
-<script setup>
-import Navbar from '../components/Navbar.vue'
-import Futer from '../components/Futer.vue'
-</script>
-
 <template>
+    <!-- Navbar -->
     <div class="custom-header container-fluid mx-auto w-100">
         <nav class="navbar navbar-expand-lg bg-white text-dark bg-">
             <div class="container navPri">
@@ -12,6 +8,7 @@ import Futer from '../components/Futer.vue'
                         <a class="navbar-brand" href="#" id="no">+62678565767</a>
                     </div>
                 </div>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -19,7 +16,7 @@ import Futer from '../components/Futer.vue'
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav" style="margin-left: 80px;">
                         <li class="nav-item">
-                            <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
+                            <router-link class="nav-link" aria-current="page" to="/HomeLogin">Home</router-link>
                         </li>
                         <li class="nav-item">
                             <!-- <router-link class="nav-link" to="/about">Tentang Kami</router-link> -->
@@ -33,12 +30,9 @@ import Futer from '../components/Futer.vue'
                                         class="fa fa-user"></i> User</button>
                                 <ul class="dropdown-menu">
                                     <router-link to="/" class="dropdown-item">Logout</router-link>
-                                    <li>
-                                    </li>
                                 </ul>
                             </div>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -58,7 +52,7 @@ import Futer from '../components/Futer.vue'
                     <label>
                         <input type="checkbox" style="display: none;" data-bs-toggle="modal" data-bs-target="#modalCart">
                         <i class="fa-solid fa-cart-shopping me-1"></i>
-                        Cart
+                        Cart ({{ totalQty }})
                     </label>
 
                     <!-- Modal -->
@@ -91,66 +85,45 @@ import Futer from '../components/Futer.vue'
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td scope="row" class="text-center">
-                                                    <input type="checkbox" name="" class="form-check-input" id="">
+                                            <tr v-if="!cart.length">
+                                                <td class="text-center" colspan="6">
+                                                    <h4 style="width: 100%" class="text-center"> No Product in cart!</h4>
                                                 </td>
-                                                <td class="text-start" style="width: 350px">
-                                                    <!-- <img src="../assets/image/produk/minyak3.png" width="150px" alt="Minyak"> -->
-                                                    <img src="../assets/image/produk/minyak1.png" class="custom-img" alt=""
-                                                        style="width: 100px;">
-                                                    Filma cooking oil 2 liters
-                                                </td>
-                                                <td class="text-center">Rp 38.000</td>
-                                                <td class="text-center">
-                                                    <div class="d-flex align-items-center justify-content-center">
-                                                        <button type="button" @click="count++"
-                                                            class="square border-0 me-1"><i
-                                                                class="fa-solid fa-plus"></i></button>
-                                                        <p class="qty my-auto">
-                                                            {{ count }}
-                                                        </p>
-                                                        <button type="button" @click="count--"
-                                                            class="square border-0 ms-1"><i
-                                                                class="fa-solid fa-minus"></i></button>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">Rp 38.000</td>
-                                                <td class="text-center"><i class="fa-solid fa-trash"></i></td>
                                             </tr>
-                                            <tr>
+                                            <tr v-for="item in cart" :key="item.id">
                                                 <td scope="row" class="text-center">
                                                     <input type="checkbox" name="" class="form-check-input" id="">
                                                 </td>
                                                 <td class="text-start" style="width: 350px">
-                                                    <!-- <img src="../assets/image/produk/minyak3.png" width="150px" alt="Minyak"> -->
-                                                    <img src="../assets/image/produk/minyak1.png" class="custom-img" alt=""
+                                                    <img :src="item.imgUrl" :alt="item.title" class="custom-img"
                                                         style="width: 100px;">
-                                                    Filma cooking oil 2 liters
+                                                    {{ item.title }}
                                                 </td>
-                                                <td class="text-center">Rp 38.000</td>
+                                                <td class="text-center">Rp {{ item.price }}</td>
                                                 <td class="text-center">
                                                     <div class="d-flex align-items-center justify-content-center">
-                                                        <button type="button" @click="count++"
+                                                        <button type="button" @click="addQty(item.id)"
                                                             class="square border-0 me-1"><i
                                                                 class="fa-solid fa-plus"></i></button>
                                                         <p class="qty my-auto">
-                                                            {{ count }}
+                                                            {{ item.qty }}
                                                         </p>
-                                                        <button type="button" @click="count--"
+                                                        <button type="button" @click="reduceQty(item.id)"
                                                             class="square border-0 ms-1"><i
                                                                 class="fa-solid fa-minus"></i></button>
                                                     </div>
                                                 </td>
-                                                <td class="text-center">Rp 38.000</td>
-                                                <td class="text-center"><i class="fa-solid fa-trash"></i></td>
+                                                <td class="text-center">Rp {{ subTotalP }}</td>
+                                                <td class="text-center"><i class="fa-solid fa-trash"
+                                                        @click="removeItem(item.id)"></i></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="row">
                                         <div class="col-2">
-                                            <button type="button" class="btn btn-primary"
-                                                style="border: none;background-color: #e76202">Continue Shipping</button>
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                                aria-label="Close" style="border: none;background-color: #e76202">Continue
+                                                Shipping</button>
                                         </div>
                                         <div class="col-2">
                                             <button type="button" class="btn btn-primary"
@@ -158,12 +131,12 @@ import Futer from '../components/Futer.vue'
                                         </div>
                                         <div class="col-4"></div>
                                         <div class="col-4">
-                                            <div class="d-block justify-content-center"
+                                            <div class="d-block justify-content-center" v-if="cart.length"
                                                 style="border: 1px solid #eee;border-radius: 15px;height: 120px;width:100%;padding: 20px">
                                                 <table>
                                                     <tr>
-                                                        <td style="width:240px;">Total</td>
-                                                        <td>Rp 38.000</td>
+                                                        <td style="width:220px;">Total</td>
+                                                        <td>Rp {{ totalPrice }}</td>
                                                     </tr>
                                                 </table>
                                                 <!-- <h4>Total</h4>
@@ -176,43 +149,6 @@ import Futer from '../components/Futer.vue'
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="row">
-                                        <div class="col-8">
-                                            <div class="card border-0">
-                                                <div class="card-body">
-                                                    <div class="row custom-row">
-                                                        <div class="col">
-                                                            <input type="checkbox" name="" id="">
-                                                        </div>
-                                                        <div class="col-4">Product</div>
-                                                        <div class="col">Unit Price</div>
-                                                        <div class="col">Quantity</div>
-                                                        <div class="col">Subtotal</div>
-                                                        <div class="col">Remove</div>
-                                                    </div>
-                                                    <div class="row custom-row">
-                                                        <div style="width:30px;">
-                                                            <input type="checkbox" name="" id="">
-                                                        </div>
-                                                        <div class="col-4 ms-0 text-center">
-                                                            <img src="../assets/image/produk/minyak1.png" class="custom-img"
-                                                                alt="" style="width: 100px;">
-                                                            <p>Bimoli cooking oil 2 liters</p>
-                                                        </div>
-
-                                                        <div class="col">Rp. 38.000</div>
-                                                        <div class="col custom-qty">
-                                                            <div class="square me-1"><i class="fa-solid fa-plus"></i></div>
-                                                            1
-                                                            <div class="square ms-1"><i class="fa-solid fa-minus"></i></div>
-                                                        </div>
-                                                        <div class="col">Rp. 38.000</div>
-                                                        <div class="col"><i class="fa-solid fa-trash"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -221,6 +157,8 @@ import Futer from '../components/Futer.vue'
             </div>
         </nav>
     </div>
+    <!-- EndNavbar -->
+    <router-view></router-view>
     <div class="container">
         <div class="small-container histoty-page mt-3">
             <table>
@@ -244,7 +182,7 @@ import Futer from '../components/Futer.vue'
                 <tr>
                     <td>
                         <div class="history-info">
-                            <img src="../assets/image/produk/tepung-roseBrand.png">
+                            <img src="../assets/image/produk/tepung3.png">
                             <div>
                                 <p>Rose Brand Tapioca Flour 500g</p>
                             </div>
@@ -270,7 +208,64 @@ import Futer from '../components/Futer.vue'
     </div>
     <Futer />
 </template>
+<script>
+import Futer from '../components/Futer.vue'
+import { mapGetters, mapActions } from 'vuex';
 
+export default {
+    data() {
+        return {
+            isProcessing: false,
+            orderPlaced: false,
+        };
+    },
+    name: 'History',
+    components: {
+        Futer
+    },
+    computed: {
+        ...mapGetters(["products", "productDetail", "cart"]),
+        totalPrice() {
+            return this.cart.reduce((a, b) => a + b.qty * b.price, 0);
+        },
+        totalQty() {
+            return this.cart.reduce((a, b) => a + b.qty, 0);
+        },
+        subTotalP() {
+            // Membuat objek untuk mengelompokkan produk berdasarkan ID
+            const groupedProducts = this.cart.reduce((groups, product) => {
+                const group = groups[product.id] || { totalQty: 0, totalPrice: 0 };
+                group.totalQty += product.qty;
+                group.totalPrice += product.qty * product.price;
+                groups[product.id] = group;
+                return groups;
+            }, {});
+
+            // Menghitung total subtotal dari semua kelompok produk
+            return Object.values(groupedProducts).reduce((subtotal, group) => subtotal + group.totalPrice, 0);
+        },
+
+
+    },
+    methods: {
+        ...mapActions(["getProducts", "addToCart", "addQty", "reduceQty", "removeItem", "emptyCart", "detailProduct", "emptyCart", "subTotalPrice"]),
+        placeOrder() {
+            this.isProcessing = true;
+            setTimeout(() => {
+                this.orderPlaced = true;
+                this.isProcessing = false;
+                this.emptyCart();
+            }, 1000);
+        },
+        processToCheckout() {
+            this.$router.push('/payment');
+        },
+    },
+    mounted() {
+        this.getProducts();
+    },
+}
+</script>
 <style scoped>
 .logo {
     border: 100px;

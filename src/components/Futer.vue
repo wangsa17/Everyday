@@ -16,9 +16,7 @@
             <a href="" class="me-4 link-secondary">
                 <i class="fab fa-linkedin"></i>
             </a>
-            <a href="" class="me-4 link-secondary">
-                <i class="fab fa-github"></i>
-            </a>
+
         </div>
         <!-- Right -->
         <!-- Section: Social media -->
